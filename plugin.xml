@@ -45,10 +45,6 @@
                     <category android:name="android.intent.category.HOME" /><!-- Handler of Home button -->
                 </intent-filter>
             </activity>
-        </config-file>
-
-        <config-file target="AndroidManifest.xml" parent="/manifest/application">
-            <!-- autorun after the app APK is updated -->
             <receiver android:name="jk.cordova.plugin.kiosk.MyPackageReplacedEventReceiver">
                 <intent-filter>
                     <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
