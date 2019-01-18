@@ -29,14 +29,12 @@ public class KioskActivity extends CordovaActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        System.out.println("KioskActivity started");
         running = true;
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        System.out.println("KioskActivity stopped");
         running = false;
     }
 
@@ -87,7 +85,6 @@ public class KioskActivity extends CordovaActivity {
     
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        System.out.println("onKeyDown event: keyCode = " + event.getKeyCode());
         return ! allowedKeys.contains(event.getKeyCode()); // prevent event from being propagated if not allowed
     }
     
