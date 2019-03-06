@@ -2,6 +2,12 @@
 var exec = require('cordova/exec');
 
 var KioskPlugin = {
+
+    enableLauncher: function() {
+        exec(function() {}, function(error) {
+            alert("KioskPlugin.enableLauncher failed: " + error);
+        }, "KioskPlugin", "enableLauncher", []);
+    },
     
     exitKiosk: function () {
         exec(function () {}, function (error) {

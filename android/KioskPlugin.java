@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
+import android.content.pm.PackageManager;
+import android.content.ComponentName;
 import org.apache.cordova.*;
 import android.widget.*;
 import android.view.Window;
@@ -21,16 +23,27 @@ import java.lang.Integer;
 import java.util.HashSet;
 
 public class KioskPlugin extends CordovaPlugin {
-    
+    public static final String ENABLE_KIOSK = "enableKiosk";
     public static final String EXIT_KIOSK = "exitKiosk";
     public static final String IS_IN_KIOSK = "isInKiosk";
     public static final String IS_SET_AS_LAUNCHER = "isSetAsLauncher";
     public static final String SET_ALLOWED_KEYS = "setAllowedKeys";
     
     @Override
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+    public boolean ENABLE_KIOSK(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         try {
             if (IS_IN_KIOSK.equals(action)) {
+                PackageManager packageManager = cordova.getActivity().getApplicationContext().getPackageName();
+                ComponentName componentName = new ComponentName(context, jk.cordova.plugin.kiosk.KioskActivity.class);
+                packageManager.setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+
+                Intent selector = new Intent(Intent.ACTION_MAIN);
+                selector.addCategory(Intent.CATEGORY_HOME);
+                selector.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(selector);
+
+                packageManager.setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_DEFAULT, PackageManager.DONT_KILL_APP);
+            } else if (IS_IN_KIOSK.equals(action)) {
                 
                 callbackContext.success(Boolean.toString(KioskActivity.running));
                 return true;
