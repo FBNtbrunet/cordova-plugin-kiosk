@@ -41,8 +41,7 @@
             <activity 
                 android:name="jk.cordova.plugin.kiosk.KioskActivity" 
                 android:keepScreenOn="true" 
-                android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-                android:enabled="false">
+                android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
                 <intent-filter>
                     <action android:name="android.intent.action.MAIN" />
                     <category android:name="android.intent.category.DEFAULT" /><!-- Handler of app icon (required to be launcher) -->
