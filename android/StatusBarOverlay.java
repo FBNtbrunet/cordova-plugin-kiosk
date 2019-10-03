@@ -33,12 +33,9 @@ public class StatusBarOverlay extends ViewGroup {
     }
 
     static StatusBarOverlay create(Activity activity) {
-         WindowManager manager = ((WindowManager) context.getApplicationContext()
+         WindowManager manager = ((WindowManager) activity.getApplicationContext()
                 .getSystemService(Context.WINDOW_SERVICE));
 
-
-
-        Activity activity = (Activity)context;
         WindowManager.LayoutParams localLayoutParams = new WindowManager.LayoutParams();
         localLayoutParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;
         localLayoutParams.gravity = Gravity.TOP;
